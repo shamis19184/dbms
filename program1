@@ -1,0 +1,76 @@
+create table publisher(name char(10) primary key,address varchar(10),phno int(10));
+create table book(book_id int(10) primary key,title varchar(10),publisher_name char(10),foreign key(publisher_name) References publisher(name));
+create table library_programme(programme_id int(10) primary key,programme_name char(10),address varchar(10));
+create table book_author(book_id int(10),foreign key(book_id) References book(book_id),author_name char(10));
+create table book_copies(book_id int(10),foreign key(book_id) References book(book_id),programme_id int(10),foreign key(programme_id) References library_programme(programme_id),no_of_copies int(10));
+create table book_lending(book_id int(10),programme_id int(10),card_no  int(10),date_out date,due_date date,primary key(book_id,card_no),foreign key(book_id) References book(book_id) ON delete cascade, foreign key(programme_id) References library_programme(programme_id) ON update cascade);
+ insert into publisher values("PEARSON","BANGLORE","224590");
+
+
+insert into publisher values("MCGRAW","NEW DELHI","224591");
+
+
+insert into publisher values("SAPNA","MANGLORE","224592");
+
+
+insert into publisher values("OXFORD","NEW DELHI","224593");
+
+
+insert into book values("100","DBMS","PEARSON","2005");
+
+
+insert into book values("101","SE","MCGRAW","2004");
+
+
+insert into book values("102","CO","SAPNA","2010");
+
+
+insert into book values("103","DMS","OXFORD","2010");
+
+
+insert into library_programme values("10","P1","BANGLORE");
+
+
+insert into library_programme values("11","P2","MANGLORE");
+
+
+insert into library_programme values("12","P3","NEW DELHI");
+
+
+insert into library_programme values("13","P4","NEW DELHI");
+
+
+insert into book_lending values("100","10","1","2018-01-10","2018-01-17");
+
+
+insert into book_lending values("101","11","2","2018-02-11","2018-02-18");
+
+
+insert into book_lending values("102","12","3","2018-03-05","2018-03-12");
+
+
+insert into book_lending values("103","13","4","2018-04-01","2018-04-08");
+
+
+insert into book_author values("100","A1");
+
+
+insert into book_author values("101","A2");
+
+
+insert into book_author values("102","A3");
+
+
+insert into book_author values("103","A4");
+
+
+insert into book_copies values("100","10","550");
+
+
+insert into book_copies values("101","11","650");
+
+
+insert into book_copies values("102","12","750");
+
+
+insert into book_copies values("103","13","850");
